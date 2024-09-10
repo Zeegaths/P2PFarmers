@@ -14,5 +14,8 @@
   "type": "module",
   "workspaces": [
     "src/p2pfarmers_frontend"
-  ]
+  ],
+  "dependencies": {
+    "@dfinity/use-auth-client": "^2.0.0"
+  }
 }
