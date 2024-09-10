@@ -8,6 +8,7 @@ import AgentForm from './components/AgentForm';
 // import Simple from './components/Products';
 import ProductList from './components/ProductList';
 import UserType from './components/UserType';
+import AddFarmer from './components/RegisterFarmer';
 
 // Create the router with path-to-component mappings
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: '/registeragent',
     element: <AgentForm />, 
+  },
+  {
+    path: '/addfarmer',
+    element: <AddFarmer />, 
   },
 
   {

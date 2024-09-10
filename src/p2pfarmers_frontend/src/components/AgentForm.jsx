@@ -19,256 +19,188 @@ import {
   Textarea,
   FormHelperText,
   InputRightElement,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+  useDisclosure,
 } from '@chakra-ui/react'
-
 import { useToast } from '@chakra-ui/react'
 
-const Form1 = () => {
+const Form1 = ({ agentDetails, handleChange }) => {
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
   return (
     <>
       <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%">
-        User Registration
+        Agent Registration
       </Heading>
-      <Flex>
-        <FormControl mr="5%">
-          <FormLabel htmlFor="first-name" fontWeight={'normal'}>
-            First name
-          </FormLabel>
-          <Input id="first-name" placeholder="First name" />
+      <SimpleGrid columns={2} spacing={4}>
+        <FormControl>
+          <FormLabel>First name</FormLabel>
+          <Input
+            name="firstName"
+            value={agentDetails.firstName}
+            onChange={handleChange}
+            placeholder="First name"
+          />
         </FormControl>
 
         <FormControl>
-          <FormLabel htmlFor="last-name" fontWeight={'normal'}>
-            Last name
-          </FormLabel>
-          <Input id="last-name" placeholder="First name" />
-        </FormControl>
-      </Flex>
-      <FormControl mt="2%">
-        <FormLabel htmlFor="email" fontWeight={'normal'}>
-          Email address
-        </FormLabel>
-        <Input id="email" type="email" />
-        <FormHelperText>We&apos;ll never share your email.</FormHelperText>
-      </FormControl>
-
-      <FormControl>
-        <FormLabel htmlFor="password" fontWeight={'normal'} mt="2%">
-          Password
-        </FormLabel>
-        <InputGroup size="md">
+          <FormLabel>Last name</FormLabel>
           <Input
-            pr="4.5rem"
-            type={show ? 'text' : 'password'}
-            placeholder="Enter password"
+            name="lastName"
+            value={agentDetails.lastName}
+            onChange={handleChange}
+            placeholder="Last name"
           />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? 'Hide' : 'Show'}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Phone</FormLabel>
+          <Input
+            name="phone"
+            value={agentDetails.phone}
+            onChange={handleChange}
+            placeholder="Phone number"
+          />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Email address</FormLabel>
+          <Input
+            name="email"
+            type="email"
+            value={agentDetails.email}
+            onChange={handleChange}
+            placeholder="Email address"
+          />
+          <FormHelperText>We&apos;ll never share your email.</FormHelperText>
+        </FormControl>
+      </SimpleGrid>
     </>
   )
 }
 
-const Form2 = () => {
+const Form2 = ({ agentDetails, handleChange }) => {
   return (
     <>
       <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%">
-        User Details
+        Business and Location Details
       </Heading>
-      <FormControl as={GridItem} colSpan={[6, 3]}>
-        <FormLabel
-          htmlFor="country"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: 'gray.50',
-          }}>
-          Country / Region
-        </FormLabel>
-        <Select
-          id="country"
-          name="country"
-          autoComplete="country"
-          placeholder="Select option"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md">
-          <option>United States</option>
-          <option>Canada</option>
-          <option>Mexico</option>
-        </Select>
-      </FormControl>
+      <SimpleGrid columns={2} spacing={4}>
+        <FormControl>
+          <FormLabel>Business Registration Number</FormLabel>
+          <Input
+            name="businessRegNo"
+            value={agentDetails.businessRegNo}
+            onChange={handleChange}
+            placeholder="Business Registration Number"
+          />
+        </FormControl>
 
-      <FormControl as={GridItem} colSpan={6}>
-        <FormLabel
-          htmlFor="street_address"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: 'gray.50',
-          }}
-          mt="2%">
-          Street address
-        </FormLabel>
-        <Input
-          type="text"
-          name="street_address"
-          id="street_address"
-          autoComplete="street-address"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md"
-        />
-      </FormControl>
+        <FormControl>
+          <FormLabel>Device ID</FormLabel>
+          <Input
+            name="deviceId"
+            value={agentDetails.deviceId}
+            onChange={handleChange}
+            placeholder="Device ID"
+          />
+        </FormControl>
 
-      <FormControl as={GridItem} colSpan={[6, 6, null, 2]}>
-        <FormLabel
-          htmlFor="city"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: 'gray.50',
-          }}
-          mt="2%">
-          City
-        </FormLabel>
-        <Input
-          type="text"
-          name="city"
-          id="city"
-          autoComplete="city"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md"
-        />
-      </FormControl>
+        <FormControl>
+          <FormLabel>Address</FormLabel>
+          <Input
+            name="address"
+            value={agentDetails.address}
+            onChange={handleChange}
+            placeholder="Address"
+          />
+        </FormControl>
 
-      <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
-        <FormLabel
-          htmlFor="state"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: 'gray.50',
-          }}
-          mt="2%">
-          State / Province
-        </FormLabel>
-        <Input
-          type="text"
-          name="state"
-          id="state"
-          autoComplete="state"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md"
-        />
-      </FormControl>
+        <FormControl>
+          <FormLabel>Postal Code</FormLabel>
+          <Input
+            name="postalCode"
+            value={agentDetails.postalCode}
+            onChange={handleChange}
+            placeholder="Postal Code"
+          />
+        </FormControl>
 
-      <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
-        <FormLabel
-          htmlFor="postal_code"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: 'gray.50',
-          }}
-          mt="2%">
-          ZIP / Postal
-        </FormLabel>
-        <Input
-          type="text"
-          name="postal_code"
-          id="postal_code"
-          autoComplete="postal-code"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md"
-        />
-      </FormControl>
+        <FormControl>
+          <FormLabel>Country Code</FormLabel>
+          <Input
+            name="countryCode"
+            value={agentDetails.countryCode}
+            onChange={handleChange}
+            placeholder="Country Code"
+          />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>City Name</FormLabel>
+          <Input
+            name="cityName"
+            value={agentDetails.cityName}
+            onChange={handleChange}
+            placeholder="City Name"
+          />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Province / State Code</FormLabel>
+          <Input
+            name="provinceCode"
+            value={agentDetails.provinceCode}
+            onChange={handleChange}
+            placeholder="Province / State Code"
+          />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Street Address</FormLabel>
+          <Input
+            name="streetAddress"
+            value={agentDetails.streetAddress}
+            onChange={handleChange}
+            placeholder="Street Address"
+          />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Geolocation</FormLabel>
+          <Input
+            name="geolocation"
+            value={agentDetails.geolocation}
+            onChange={handleChange}
+            placeholder="Geolocation"
+          />
+        </FormControl>
+      </SimpleGrid>
     </>
   )
 }
 
-const Form3 = () => {
+const Form3 = ({ agentDetails, handleChange }) => {
   return (
     <>
       <Heading w="100%" textAlign={'center'} fontWeight="normal">
-        Social Handles
+        Passport Photo and Final Details
       </Heading>
       <SimpleGrid columns={1} spacing={6}>
-        <FormControl as={GridItem} colSpan={[3, 2]}>
-          <FormLabel
-            fontSize="sm"
-            fontWeight="md"
-            color="gray.700"
-            _dark={{
-              color: 'gray.50',
-            }}>
-            Website
-          </FormLabel>
-          <InputGroup size="sm">
-            <InputLeftAddon
-              bg="gray.50"
-              _dark={{
-                bg: 'gray.800',
-              }}
-              color="gray.500"
-              rounded="md">
-              http://
-            </InputLeftAddon>
-            <Input
-              type="tel"
-              placeholder="www.example.com"
-              focusBorderColor="brand.400"
-              rounded="md"
-            />
-          </InputGroup>
-        </FormControl>
-
-        <FormControl id="email" mt={1}>
-          <FormLabel
-            fontSize="sm"
-            fontWeight="md"
-            color="gray.700"
-            _dark={{
-              color: 'gray.50',
-            }}>
-            About
-          </FormLabel>
-          <Textarea
-            placeholder="you@example.com"
-            rows={3}
-            shadow="sm"
-            focusBorderColor="brand.400"
-            fontSize={{
-              sm: 'sm',
-            }}
+        <FormControl>
+          <FormLabel>Passport Photo</FormLabel>
+          <Input
+            type="file"
+            name="passportPhoto"
+            onChange={handleChange}
+            accept="image/*"
           />
-          <FormHelperText>
-            Brief description for your profile. URLs are hyperlinked.
-          </FormHelperText>
         </FormControl>
       </SimpleGrid>
     </>
@@ -277,8 +209,30 @@ const Form3 = () => {
 
 export default function AgentForm() {
   const toast = useToast()
+  const { isOpen, onOpen, onClose } = useDisclosure() // Use Chakra UI's useDisclosure for modal
   const [step, setStep] = useState(1)
   const [progress, setProgress] = useState(33.33)
+  const [agentDetails, setAgentDetails] = useState({
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+    businessRegNo: '',
+    deviceId: '',
+    address: '',
+    postalCode: '',
+    countryCode: '',
+    cityName: '',
+    provinceCode: '',
+    streetAddress: '',
+    geolocation: '',
+    passportPhoto: '',
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setAgentDetails({ ...agentDetails, [name]: value })
+  }
 
   return (
     <>
@@ -291,7 +245,13 @@ export default function AgentForm() {
         m="10px auto"
         as="form">
         <Progress hasStripe value={progress} mb="5%" mx="5%" isAnimated></Progress>
-        {step === 1 ? <Form1 /> : step === 2 ? <Form2 /> : <Form3 />}
+        {step === 1 ? (
+          <Form1 agentDetails={agentDetails} handleChange={handleChange} />
+        ) : step === 2 ? (
+          <Form2 agentDetails={agentDetails} handleChange={handleChange} />
+        ) : (
+          <Form3 agentDetails={agentDetails} handleChange={handleChange} />
+        )}
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
             <Flex>
@@ -336,6 +296,7 @@ export default function AgentForm() {
                     duration: 3000,
                     isClosable: true,
                   })
+                  onOpen() // Open the modal on submission
                 }}>
                 Submit
               </Button>
@@ -343,6 +304,23 @@ export default function AgentForm() {
           </Flex>
         </ButtonGroup>
       </Box>
+
+      {/* Success Modal */}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Registration Successful</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            Your registration was successful. Waiting for approval.
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   )
 }

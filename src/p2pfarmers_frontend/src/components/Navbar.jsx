@@ -53,7 +53,7 @@ export default function Nav() {
       zIndex={10} // Ensure it stays on top of other content
     >
       <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-        <Box>Logo</Box>
+        <Box><img src="/logo.png" alt="Logo" style={{ width: '40px', height: 'auto' }} /></Box>
 
         <Flex alignItems={'center'}>
           <Stack direction={'row'} spacing={7}>

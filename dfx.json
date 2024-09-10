@@ -4,9 +4,14 @@
       "main": "src/p2pfarmers_backend/main.mo",
       "type": "motoko"
     },
+    "internet-identity": {
+      "type": "pull",
+      "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+    },
     "p2pfarmers_frontend": {
       "dependencies": [
-        "p2pfarmers_backend"
+        "p2pfarmers_backend",
+        "internet-identity"
       ],
       "source": [
         "src/p2pfarmers_frontend/dist"
