@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "p2pfarmers_backend": {
+      "main": "src/p2pfarmers_backend/main.mo",
+      "type": "motoko"
+    },
+    "p2pfarmers_frontend": {
+      "dependencies": [
+        "p2pfarmers_backend"
+      ],
+      "source": [
+        "src/p2pfarmers_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "p2pfarmers_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
