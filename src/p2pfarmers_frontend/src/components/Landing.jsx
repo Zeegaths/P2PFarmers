@@ -62,9 +62,7 @@ export default function CallToActionWithIllustration() {
             </Text>
           </Heading>
           <Text maxW={'3xl'}>
-            Never miss a meeting. Never be late for one too. Keep track of your meetings and
-            receive smart reminders in appropriate times. Read your smart “Daily Agenda”
-            every morning.
+            Do you ever wish you could get a spefic food back home? Order your favorite food from anywhere in the world. Best farmers, best quality, happy meals.
           </Text>
           <Stack spacing={6} direction={'row'}>
             <Button
