@@ -21,6 +21,7 @@ import { Actor, HttpAgent } from '@dfinity/agent';
 // import { idlFactory as ckUSDCIdlFactory, canisterId as ckUSDCCanisterId } from 'path/to/ckusdc_declarations'; 
 import SidebarWithHeader from './Sidebar';
 import Simple from './Products'; // Import the detailed product component
+import withAuth from '../lib/withAuth';
 
 function ProductList() {
   const products = [
@@ -212,4 +213,5 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+const Page = withAuth(ProductList);
+export default Page;

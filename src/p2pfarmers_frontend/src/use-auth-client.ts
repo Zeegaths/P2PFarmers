@@ -111,9 +111,9 @@ export function useAuthClient(options?: UseAuthClientOptions) {
             setIsAuthenticated(true);
             setIdentity(authClient.getIdentity());
             if (successResponse !== undefined) {
-              callback?.();
+              callback?.(successResponse);
             } else {
-              callback?.();
+              callback?.(successResponse);
             }
             resolve(successResponse);
           },

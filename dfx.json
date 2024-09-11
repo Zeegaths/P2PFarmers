@@ -1,6 +1,6 @@
 {
   "canisters": {
-    "p2pfarmers_backend": {
+    "backend": {
       "main": "src/p2pfarmers_backend/main.mo",
       "type": "motoko"
     },
@@ -10,7 +10,7 @@
     },
     "p2pfarmers_frontend": {
       "dependencies": [
-        "p2pfarmers_backend",
+        "backend",
         "internet-identity"
       ],
       "source": [

@@ -16,10 +16,10 @@ shared ({ caller }) actor class Backend() {
   type Farmer = Types.Farmer;
   type Farm = Types.Farm;
   type Product = Types.Product;
-  
+  type User = Types.User;
+
   stable var acls = Vector.new<Principal>();
-  stable let agents = Map.new<Principal, Agent>();
-  stable let buyers = Map.new<Principal, Buyer>();
+  stable let members = Map.new<Principal, User>();
 
   stable var owner = caller;
 
@@ -76,14 +76,14 @@ shared ({ caller }) actor class Backend() {
     #ok();
   };
 
-  public shared ({ caller }) func registerAgent(data: Dto.CreateAgent) : async Result<Text, Text> {
-    let user = Map.get(agents, phash, caller);
+  public shared ({ caller }) func registerAgent(data : Dto.CreateAgent) : async Result<Text, Text> {
+    let user = Map.get(members, phash, caller);
     switch (user) {
       case (?_) {
-        return #err("Agent already registered");
+        return #err("User already registered");
       };
       case (null) {
-        let newAgent: Agent = {
+        let newAgent : Agent = {
           id = await Utils.uuid();
           firstName = data.firstName;
           lastName = data.lastName;
@@ -101,20 +101,20 @@ shared ({ caller }) actor class Backend() {
           profilePicture = data.profilePicture;
           farms = Map.new<Text, (Farmer, Farm)>();
         };
-        Map.set(agents, phash, caller, newAgent);
+        Map.set(members, phash, caller, #Agent(newAgent));
         #ok(newAgent.id);
       };
     };
   };
 
-  public shared ({ caller }) func registerBuyer(data: Dto.CreateBuyer) : async Result<Text, Text> {
-    let user = Map.get(buyers, phash, caller);
+  public shared ({ caller }) func registerBuyer(data : Dto.CreateBuyer) : async Result<Text, Text> {
+    let user = Map.get(members, phash, caller);
     switch (user) {
       case (?_) {
-        return #err("Buyer already registered");
+        return #err("User already registered");
       };
       case (null) {
-        let newUser: Buyer = {
+        let newUser : Buyer = {
           id = await Utils.uuid();
           firstName = data.firstName;
           lastName = data.lastName;
@@ -132,8 +132,45 @@ shared ({ caller }) actor class Backend() {
           longitude = null;
           profilePicture = data.profilePicture;
         };
-        Map.set(buyers, phash, caller, newUser);
+        Map.set(members, phash, caller, #Buyer(newUser));
         #ok(newUser.id);
+      };
+    };
+  };
+
+  // Get user profile
+  public query func getProfile(caller: Principal) : async Result<Dto.User, Text> {
+    let user = Map.get(members, phash, caller);
+    switch (user) {
+      case (?member) {
+        switch (member) {
+          case (#Agent(agent)) {
+            let sharedAgent = {
+              id = agent.id;
+              firstName = agent.firstName;
+              lastName = agent.lastName;
+              phone = agent.phone;
+              email = agent.email;
+              address = agent.address;
+              businessRegNo = agent.businessRegNo;
+              deviceId = agent.deviceId;
+              postalCode = agent.postalCode;
+              country = agent.country;
+              cityName = agent.cityName;
+              stateCode = agent.stateCode;
+              latitude = agent.latitude;
+              longitude = agent.longitude;
+              profilePicture = agent.profilePicture;
+            };
+            #ok(#Agent(sharedAgent));
+          };
+          case (#Buyer(buyer)) {
+            #ok(#Buyer(buyer));
+          };
+        };
+      };
+      case (null) {
+        #err("User not found");
       };
     };
   };

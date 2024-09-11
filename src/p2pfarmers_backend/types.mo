@@ -14,6 +14,11 @@ module {
 
   public let INVALID_CANISTER_ID = "invalid!canister!id";
 
+  public type User = {
+    #Agent: Agent;
+    #Buyer: Buyer;
+  };
+
   public type Agent = {
     id : Text;
     firstName : Text;

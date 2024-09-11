@@ -11,7 +11,7 @@ import {
 import { img } from 'framer-motion/client';
 import Nav from './Navbar';
 import { useState } from "react";
-import { idlFactory, canisterId } from "../../../declarations/p2pfarmers_backend";
+import { idlFactory, canisterId } from "../../../declarations/backend";
 import { useAuthClient } from "../../src/index";
 import { useNavigate } from "react-router-dom";
 import SimpleThreeColumns from './Features';
@@ -19,6 +19,7 @@ import BasicStatistics from './Stats';
 import SmallWithSocial from './Footer';
 import ScrollAnimationWrapper from '../styles/ScrollAnimationWrapper';
 import getScrollAnimation from '../styles/getScrollAnimation';
+import { getIdentityProvider } from '../helper/auth';
 const Illustration = (props) => {
   return (
     <img src="/food.jpg" alt="" />
@@ -27,10 +28,7 @@ const Illustration = (props) => {
 
 export default function CallToActionWithIllustration() {
   const navigate = useNavigate();
-  const identityProvider =
-    process.env.DFX_NETWORK === "local"
-      ? `http://${process.env.CANISTER_ID_INTERNET_IDENTITY}.localhost:4943`
-      : "https://identity.ic0.app";
+  const identityProvider = getIdentityProvider();
 
   const { isAuthenticated, login, logout, actor } = useAuthClient({
     loginOptions: {

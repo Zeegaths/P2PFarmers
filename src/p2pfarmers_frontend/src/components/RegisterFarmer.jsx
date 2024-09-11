@@ -22,6 +22,7 @@ import {
 } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom' // Import useNavigate
+import withAuth from '../lib/withAuth'
 
 const Form1 = () => {
   const [show, setShow] = useState(false)
@@ -275,7 +276,7 @@ const Form3 = () => {
   )
 }
 
-export default function AgentForm() {
+function AgentForm() {
   const toast = useToast()
   const [step, setStep] = useState(1)
   const [progress, setProgress] = useState(33.33)
@@ -348,3 +349,7 @@ export default function AgentForm() {
     </>
   )
 }
+
+const Page = withAuth(AgentForm)
+
+export default Page;
