@@ -76,7 +76,7 @@ shared ({ caller }) actor class Backend() {
     #ok();
   };
 
-  public shared ({ caller }) func registerAgent(data: Dto.CreateUser) : async Result<Text, Text> {
+  public shared ({ caller }) func registerAgent(data: Dto.CreateAgent) : async Result<Text, Text> {
     let user = Map.get(agents, phash, caller);
     switch (user) {
       case (?_) {
@@ -89,16 +89,16 @@ shared ({ caller }) actor class Backend() {
           lastName = data.lastName;
           phone = data.phone;
           email = data.email;
-          address = null;
-          businessRegNo = null;
+          address = data.address;
+          businessRegNo = data.businessRegNo;
           deviceId = null;
-          postalCode = null;
-          country = null;
-          cityName = null;
-          stateCode = null;
+          postalCode = data.postalCode;
+          country = data.country;
+          cityName = data.cityName;
+          stateCode = data.stateCode;
           latitude = null;
           longitude = null;
-          profilePicture = null;
+          profilePicture = data.profilePicture;
           farms = Map.new<Text, (Farmer, Farm)>();
         };
         Map.set(agents, phash, caller, newAgent);
@@ -107,38 +107,7 @@ shared ({ caller }) actor class Backend() {
     };
   };
 
-  public shared ({ caller }) func completeAgentProfile(data: Dto.CompleteAgentBio) : async Result<Text, Text> {
-    let member = Map.get(agents, phash, caller);
-    switch (member) {
-      case (?user) {
-        let updatedUser: Agent = {
-          id = user.id;
-          firstName = user.firstName;
-          lastName = user.lastName;
-          phone = user.phone;
-          email = user.email;
-          address = ?data.address;
-          businessRegNo = ?data.businessRegNo;
-          deviceId = data.deviceId;
-          postalCode = data.postalCode;
-          country = ?data.country;
-          cityName = ?data.cityName;
-          stateCode = ?data.stateCode;
-          latitude = data.latitude;
-          longitude = data.longitude;
-          profilePicture = ?data.profilePicture;
-          farms = Map.new<Text, (Farmer, Farm)>();
-        };
-        Map.set(agents, phash, caller, updatedUser);
-        #ok("Agent updated successfully");
-      };
-      case (null) {
-        #err("Agent does not exist");
-      };
-    };
-  };
-
-  public shared ({ caller }) func registerBuyer(data: Dto.CreateUser) : async Result<Text, Text> {
+  public shared ({ caller }) func registerBuyer(data: Dto.CreateBuyer) : async Result<Text, Text> {
     let user = Map.get(buyers, phash, caller);
     switch (user) {
       case (?_) {
@@ -151,17 +120,17 @@ shared ({ caller }) actor class Backend() {
           lastName = data.lastName;
           phone = data.phone;
           email = data.email;
-          address = null;
-          businessRegNo = null;
-          businessName = null;
+          address = data.address;
+          businessRegNo = data.businessRegNo;
+          businessName = data.businessName;
           deviceId = null;
-          postalCode = null;
-          country = null;
-          cityName = null;
-          stateCode = null;
+          postalCode = data.postalCode;
+          country = data.country;
+          cityName = data.cityName;
+          stateCode = data.stateCode;
           latitude = null;
           longitude = null;
-          profilePicture = null;
+          profilePicture = data.profilePicture;
         };
         Map.set(buyers, phash, caller, newUser);
         #ok(newUser.id);

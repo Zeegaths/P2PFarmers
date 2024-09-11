@@ -7,10 +7,8 @@ import './index.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ChakraProvider>
-      {/* <BrowserRouter>  */}
-        <App />
-      {/* </BrowserRouter> */}
-    </ChakraProvider>
+    {/* <BrowserRouter>  */}
+      <App />
+    {/* </BrowserRouter> */}
   </StrictMode>,
 );

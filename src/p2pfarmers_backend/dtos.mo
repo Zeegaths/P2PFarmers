@@ -9,21 +9,36 @@ import JSON "mo:json.mo";
 import Map "mo:map/Map";
 
 module {
-  public type CreateUser = {
+  public type CreateAgent = {
     firstName: Text;
     lastName: Text;
     phone: Text;
     email: Text;
-  };
-
-  public type CompleteAgentBio = {
-    profilePicture: Blob;
     businessRegNo: Text;
-    postalCode: ?Text;
+    postalCode: Text;
     country: Text;
     cityName: Text;
     stateCode: Text;
     address: Text;
+    profilePicture: Blob;
+  };
+
+  public type CreateBuyer = {
+    firstName: Text;
+    lastName: Text;
+    phone: Text;
+    email: Text;
+    businessRegNo: Text;
+    postalCode: Text;
+    country: Text;
+    cityName: Text;
+    stateCode: Text;
+    address: Text;
+    businessName: Text;
+    profilePicture: Blob;
+  };
+
+  public type CompleteAgentBio = {
     latitude: ?Float;
     longitude: ?Float;
     deviceId: ?Text;
