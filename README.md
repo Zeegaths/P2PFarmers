@@ -1,6 +1,6 @@
 # P2P Farmers
 
-Welcome to your new `p2pfarmers` project.
+Welcome to your new `p2pfarmers` project. [Frontend canister URL](https://25prf-lqaaa-aaaak-ak7ea-cai.icp0.io/)
 
 ## Why
 
