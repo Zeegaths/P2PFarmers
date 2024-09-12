@@ -1,19 +1,33 @@
-# `p2pfarmers`
+# P2P Farmers
 
-Welcome to your new `p2pfarmers` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+Welcome to your new `p2pfarmers` project.
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+## Why
 
-To learn more before you start working with `p2pfarmers`, see the following documentation available online:
+Do you ever wish you could get a spefic food back home? Order your favorite food from anywhere in the world. Best farmers, best quality, happy meals.
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Motoko Programming Language Guide](https://internetcomputer.org/docs/current/motoko/main/motoko)
-- [Motoko Language Quick Reference](https://internetcomputer.org/docs/current/motoko/main/language-manual)
+## Problem
+
+It's hard to for rural farmers to supply goods to other places in the world. Causing them not to take advantage of better streams of income.
+
+## Solution
+
+This is P2P Farmers, we hope to solve this by creating a transparent and trust-free solution where buyers can be connected with farmers through agents. Agents are there to inspect products to ensure buyers get what they paid for and help farmers with little to no tech experience utilize the ICP blockchain to enjoy a decentralized way of farming.
+
+## Ideation and Flow
+
+To learn more about `p2pfarmers`, see the following documentation available online:
+
+- [Miro Board](https://miro.com/app/board/uXjVKhbgzd8=/?share_link_id=15952402974)
+
+## Usage
 
 If you want to start working on your project right away, you might want to try the following commands:
 
+- Clone the project from github
+
 ```bash
+git clone <git url here>
 cd p2pfarmers/
 dfx help
 dfx canister --help
